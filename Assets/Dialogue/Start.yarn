@@ -1,0 +1,24 @@
+﻿title: Start
+// header separator
+---
+Narrator: Hello There! Currently the other canvas might block any clicking, hit SPACE. #line:greeting
+Narrator: Here, pick an option with ENTER!
+-> Yeah!
+    <<jump GoodResponse>>
+-> Nah...
+    <<jump BadResponse>>
+// node end
+===
+
+title: GoodResponse
+position: 288,-80
+---
+Narrator: Yippie!
+===
+
+
+title: BadResponse
+position: 280,87
+---
+Narrator: Evil Larry will visit you. #line:evil_larry
+===
