@@ -12,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Stage
   - 
   - 
   - 
@@ -39,8 +39,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 243597469
+    locked: 0
+  - name: Stage
+    uniqueID: 109206441
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 1358494073
+    locked: 0
+  - name: UI
+    uniqueID: 3023908891
     locked: 0
   m_RenderingLayers:
   - Default

@@ -4,11 +4,19 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
 
-	public float speed = 5f;
+	public float speed = 200f;
 
-	void FixedUpdate()
+	private Rigidbody2D body;
+
+    void Awake()
+    {
+        body = GetComponent<Rigidbody2D>();
+    }
+
+    void FixedUpdate()
 	{
 		Vector3 vel = InputManager.I.MoveInput * speed * Time.fixedDeltaTime;
-		transform.position += vel;
+		body.linearVelocity = vel;
+		// transform.position += vel;
 	}
 }
