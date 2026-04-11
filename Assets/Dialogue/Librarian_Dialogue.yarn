@@ -1,0 +1,48 @@
+
+title:Librarian
+---
+<<if visited_count("Librarian")<1>>
+There's been a mistake hasn't there? What is your name, little one?
+->Li'Shkya
+  Oh, heavens. So there has been a mistake.
+  ->What's the goal here?
+    We had planned to set the stage for Ve'Shkya to subjugate this planet.
+    So, we set off to summon Him and crash our vessel into the earth, letting Him use the power of the impact to his advantage.
+    He would have done great things...
+    ->If you get me home, I'll put in a good word
+      It's possible, if you retrace our steps and perform the ritual again.
+      ->Just tell me what you did
+        My memory isn't what it once was...
+        But you can study the tomes and do it yourself.
+        ->Wow, thanks
+    ->We are all gonna die
+      Well, Ve'Shkya would have survived the impact - we are his vassals, so we've made our peace with this.
+      ->You're insane. I'm going home
+       If you retrace the ritual, you should be able to return to your world...
+      I can't remember the details, but it is all written in the tomes.
+      ->Okay, great
+  ->Great work, freak
+    Sorry for that. Make yourself comfortable, I guess...
+    ->No way, I'm going home
+      If you retrace the ritual, you should be able to return to your world...
+      I can't remember the details, but it is all written in the tomes.
+      ->Okay, thanks
+->Ve'Shkya
+  I guess it's folly to expect a demon to speak truthfully. If you are who you say, then you have nothing to fear.
+  This vessel will crash onto the target realm in short order, and you will be free to reign.
+  Assuming, of course, that you are saying the truth.
+  If not, I would suggest performing a ritual to jump ship... The tomes will tell you how.
+  ->And you can't?
+    No. My memory is not what it once was...
+->None of your business
+  Okay, okay, I got the message.
+  If you want to get home, just perform the ritual again.
+  ->Can't you do it?
+    My memory isn't what it used to be... I don't remember the steps.
+    There's candles... Ah, darn it all.
+    Just read the tomes.
+    ->Fine
+<<else>>
+My memory fails me... If you wish to learn the ritual, study the tomes.
+<<endif>>
+===
