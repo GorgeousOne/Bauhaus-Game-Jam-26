@@ -1,0 +1,78 @@
+title:MaskIntro
+---
+<<if visited("MaskYap") == false>>
+  For inexplicable reason, the masked cultist stands unmasked before you.
+  <<jump MaskCheck>>
+<<else>>
+  <<jump MaskCheck>>
+<<endif>>
+===
+title:MaskCheck
+---
+<<if $Mask =="wrong">>
+  <<jump MaskWrong>>
+<<elseif $Mask =="right">>
+  <<jump MaskRight>>
+<<else>>
+<<jump MaskYap>>
+<<endif>>
+===
+
+title:MaskWrong
+---
+What is it now, brat?
+->Give Mask
+  <<delete_mask false>>
+  Oh, you bore me.
+  That is not mine. I am the disgraced Gasping Cyclops, remember?
+  ->That's you, alright
+->Nevermind
+===
+
+title:MaskRight
+---
+What is it now, brat?
+->Give Mask
+  <<delete_mask true>>
+  Oh, what a beaut... That is indeed mine.
+  What fine handiwork, don't you think?
+  It practically oozes power...
+  ->Just put the mask on
+    Don't snap at me, brat.
+    I'm just savouring the moment.
+    << set $Mask to string("None")>>
+->Nevermind
+===
+
+title:MaskYap
+---
+O, heavens singe my flesh! What do you want, treacherous one?
+->Where is your mask, freak?
+  It has served its purpose, so it is back in its rightful place of rest.
+  All is as it should be.
+  ->That being?
+    Treacherous one, do you not have shelves in the abyssal realm?
+    Where else would it be!
+  ->Why'd you take it off?
+    I intended to be blinded by His arrival at the conclusion of the ritual.
+    But it seems He did not grant me this mercy, so now I must glance upon your visage.
+  ->Whose mask did you wear?
+    My role in this celestial play was that of the disgraced cyclops, gasping in awe at the arrival of the prince. It is a role I play well.
+->Who are you to speak of me this way?
+  Me? I am but a servant of the prince of the second realm of the abyssal ring, a vassal of His claim to the end.
+  You, however, are a saboteur! You will perish alongside us on this vessel, a sacrifice to His greatness!
+  ->Absolutely not
+    Impudent brat! You are powerless in the light of the ritual...
+    ->I am twelve years old
+      And what of it! We have made younger sacrifices!
+      ->Sacrificing a demon won't get you points with Ve'Shkya
+        You dare speak His name!
+        ->I'm sick of this. Bye
+    ->If you help me, I will call forth Ye'Shkya to take my place
+      As if you have such power! But I suppose it would only serve you right to try and fail.
+      It is decided. I shall "aid" you, brat.
+  ->I suppose
+  I appreciate your humility, treacherous one. Perhaps I have misjudged you.
+  Soon, we will be nothing but velocity rendered impact, a precise strike in service of His greatness...
+->Nevermind
+===

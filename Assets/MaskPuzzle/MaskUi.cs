@@ -7,6 +7,7 @@ public class MaskUi : MonoBehaviour
 
     public UI_Inventory inv;
     public GameObject background;
+    public GameObject maskContainer;
     List<MaskItem> masks = new();
 
 
@@ -16,13 +17,13 @@ public class MaskUi : MonoBehaviour
         {
             Debug.LogError("MaskUi is missing reference to inventory");
         }
-        masks.AddRange(GetComponentsInChildren<MaskItem>());
+        masks.AddRange(maskContainer.GetComponentsInChildren<MaskItem>());
 
         foreach (MaskItem mask in masks)
         {
             mask.MaskClick.AddListener(OnMoveMaskToInv);
         }
-
+        Hide();
     }
 
     void OnMoveMaskToInv(MaskItem mask)
@@ -34,7 +35,7 @@ public class MaskUi : MonoBehaviour
             return;
         }
         slot0.item = mask.GetComponent<RectTransform>();
-        mask.transform.parent = slot0.transform;
+        mask.transform.SetParent(slot0.transform);
         mask.AnimateMoveToInv(slot0.Pos());
         masks.Remove(mask);
         Invoke(nameof(Hide), 1f);
@@ -52,13 +53,13 @@ public class MaskUi : MonoBehaviour
             //TODO show dialog "i already picked a mask"
             return;
         }
-        transform.gameObject.SetActive(true);
+        maskContainer.SetActive(true);
         background.SetActive(true);
     }
 
     public void Hide()
     {
-        transform.gameObject.SetActive(false);
+        maskContainer.SetActive(false);
         background.SetActive(false);
     }
 }

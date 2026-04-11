@@ -4,15 +4,19 @@ using UnityEngine.EventSystems;
 
 public class MaskItem : MonoBehaviour, IPointerClickHandler
 {
+
+    public bool IsCorrectMask;
+
     public UnityEvent<MaskItem> MaskClick;
+
+    public float animTime = 0.5f;
+    float animStart = -1;
+    float targetScale = 0.5f;
 
     RectTransform rect;
     Vector2 origin;
     Vector2 targetPos;
-    float targetScale = 0.5f;
 
-    public float animTime = 0.5f;
-    float animStart = -1;
 
     void Awake()
     {
