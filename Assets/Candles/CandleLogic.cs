@@ -1,17 +1,28 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class CandleLogic : MonoBehaviour
+public class CandleLogic : MonoBehaviour, IPointerClickHandler
 {
 
     public Sprite imgLit;
     public Sprite imgUnlit;
     public UnityEvent<CandleLogic> CandleClick;
-    SpriteRenderer sprite;
+    Image texture;
 
+    void Awake()
+    {
+        texture = GetComponent<Image>();
+    }
 
     public void SetLit(bool state)
     {
-        sprite.sprite = state ? imgLit : imgUnlit;
+        texture.sprite = state ? imgLit : imgUnlit;
+    }
+
+    public void OnPointerClick(PointerEventData pointerEventData)
+    {
+        CandleClick.Invoke(this);
     }
 }

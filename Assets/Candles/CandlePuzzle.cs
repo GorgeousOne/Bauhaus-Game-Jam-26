@@ -4,13 +4,20 @@ using UnityEngine;
 public class CandlePuzzle : MonoBehaviour
 {
 
+    public AudioClip extinguishSound;
+    public AudioClip lightUpSound;
+
+    public GameObject candleUi;
+
+    AudioSource speaker;
+
     int[] candleOrder = {3, 0, 1, 4, 2};
     CandleLogic[] candles;
-    int successCounter = 0;
+    int numCorrectCandles = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        speaker = GetComponent<AudioSource>();
         candles = GetComponentsInChildren<CandleLogic>();
 
         foreach (CandleLogic c in candles)
@@ -19,16 +26,31 @@ public class CandlePuzzle : MonoBehaviour
         }
     }
 
-    void OnCandleClick(CandleLogic c)
+    void OnCandleClick(CandleLogic candle)
     {
-        int idx = Array.IndexOf(candles, c);
+        // speaker.PlayOneShot(lightUpSound);
+        int clickedIdx = Array.IndexOf(candles, candle);
+        int correctIdx = candleOrder[numCorrectCandles];
 
+        if (clickedIdx == correctIdx)
+        {
+            candle.SetLit(true);
+            numCorrectCandles += 1;
+            Debug.Log("correct" + numCorrectCandles);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+            if (numCorrectCandles == candleOrder.Length)
+            {
+                //GameState.Instance.solvedCandles();
+            }
+        } else
+        {
+            Debug.Log("WRONG");
+            // speaker.PlayOneShot(extinguishSound);
+            foreach (CandleLogic c in candles)
+            {
+                c.SetLit(false);
+                numCorrectCandles = 0;
+            }
+        }
     }
 }
