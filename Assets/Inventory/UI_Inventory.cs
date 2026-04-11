@@ -10,16 +10,16 @@ public class UI_Inventory : MonoBehaviour
     [SerializeField] GameObject slotPrefab;
 
     private Transform slotContainer;
-    private List<UI_ItemSlot> slots = new();
+    public List<UI_ItemSlot> slots = new();
 
     public void Awake()
     {
         slotContainer = transform.Find("Slot Container");
 
         //create example 2x2 slots
-        for (int y = 0; y < 2; ++y)
+        for (int y = 0; y < 1; ++y)
         {
-            for (int x = 0; x < 2; ++x)
+            for (int x = 0; x < 1; ++x)
             {
                 GameObject slotObj = Instantiate(slotPrefab, slotContainer);
                 slots.Add(slotObj.GetComponent<UI_ItemSlot>());
