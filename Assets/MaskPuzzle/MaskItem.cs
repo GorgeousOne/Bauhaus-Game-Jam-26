@@ -11,7 +11,7 @@ public class MaskItem : MonoBehaviour, IPointerClickHandler
     Vector2 targetPos;
     float targetScale = 0.5f;
 
-    public float animTime = 1f;
+    public float animTime = 0.5f;
     float animStart = -1;
 
     void Awake()

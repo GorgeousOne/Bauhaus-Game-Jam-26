@@ -1,4 +1,6 @@
-﻿title: Start
+﻿title: Cultist1
+color: orange
+position: -16,4
 // header separator
 ---
 Narrator: Hello There! Currently the other canvas might block any clicking, hit SPACE. #line:greeting
