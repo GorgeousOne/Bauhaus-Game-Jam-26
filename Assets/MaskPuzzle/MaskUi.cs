@@ -6,6 +6,7 @@ public class MaskUi : MonoBehaviour
 {
 
     public UI_Inventory inv;
+    public GameObject background;
     List<MaskItem> masks = new();
 
 
@@ -34,5 +35,17 @@ public class MaskUi : MonoBehaviour
         }
         slot0.item = mask.GetComponent<RectTransform>();
         mask.AnimateMoveToInv(slot0.Pos());
+    }
+
+    public void Show()
+    {
+        transform.gameObject.SetActive(true);
+        background.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        transform.gameObject.SetActive(false);
+        background.SetActive(false);
     }
 }
