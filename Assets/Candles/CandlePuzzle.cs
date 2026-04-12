@@ -21,11 +21,9 @@ public class CandlePuzzle : MonoBehaviour
     {
         speaker = GetComponent<AudioSource>();
         candles = candleUi.transform.GetComponentsInChildren<CandleLogic>();
-        Debug.Log("trying to find candles");
         foreach (CandleLogic c in candles)
         {
             c.CandleClick.AddListener(OnCandleClick);
-            Debug.Log(c);
         }
     }
 
