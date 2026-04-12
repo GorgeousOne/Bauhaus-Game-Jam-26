@@ -20,7 +20,6 @@ public class GameState : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
         Invoke(nameof(Cheat), 2f);
     }
 

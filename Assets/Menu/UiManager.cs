@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 // yeah maybe move pause logic somewhere else
@@ -14,7 +15,6 @@ public class UiManager : MonoBehaviour
 	public GameObject introScreen;
 	public Image introImage;
 	public Sprite[] introFrames;
-	private bool isGamePaused;
 	private bool isInIntro;
 	private int currentFrame;
 	public float fadeDuration = 1f;
@@ -81,37 +81,13 @@ public class UiManager : MonoBehaviour
 				return;
 			}
 		}
-		if (GameManager.Instance.IsGameRunning && !isGamePaused && InputManager.I.MenuOpenInput)
-		{
-			PauseGame();
-		}
-		if (GameManager.Instance.IsGameRunning && isGamePaused && InputManager.I.MenuCloseInput)
-		{
-			ResumeGame();
-		}
 	}
 
 	void EndIntro()
 	{
 		isInIntro = false;
 		introScreen.SetActive(false);
-		GameManager.Instance.StartGame();
+		SceneManager.LoadScene("Level_1");
 	}
 
-	// show pause ui & disable player inputs
-	public void PauseGame()
-	{
-		isGamePaused = true;
-		Time.timeScale = 0;
-		pauseScreen.gameObject.SetActive(true);
-		InputManager.PlayerInput.SwitchCurrentActionMap("UI");
-	}
-
-	public void ResumeGame()
-	{
-		isGamePaused = false;
-		Time.timeScale = 1;
-		pauseScreen.gameObject.SetActive(false);
-		InputManager.PlayerInput.SwitchCurrentActionMap("Player");
-	}
 }

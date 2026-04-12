@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class InputManager : MonoBehaviour
 {
 
 	public static InputManager I;
-	public static PlayerInput PlayerInput;
+	public PlayerInput PlayerInput;
 
 	public Vector2 MoveInput {get; private set;}
 	public bool InteractInput {get; private set;}
@@ -23,7 +22,7 @@ public class InputManager : MonoBehaviour
 	void Awake()
 	{
 		// if null, set to this
-		I ??= this;
+		I = this;
 		PlayerInput = GetComponent<PlayerInput>();
 		moveAction = PlayerInput.actions["Move"];
 		interactAction = PlayerInput.actions["Interact"];
