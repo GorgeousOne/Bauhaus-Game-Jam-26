@@ -46,6 +46,7 @@ public class OrganPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         grabOffset = e.position - rectScreenPoint;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0.7f;
+        SoundFXManager.instance.PlayClickSound(transform);
     }
 
     public void OnDrag(PointerEventData e)

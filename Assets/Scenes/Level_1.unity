@@ -875,6 +875,11 @@ Transform:
   - {fileID: 1444164249}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &280309257 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2958262986393358531, guid: 52571f68872914e24837210513edea1d, type: 3}
+  m_PrefabInstance: {fileID: 293648369}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &293648369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -894,6 +899,30 @@ PrefabInstance:
     - target: {fileID: 2958262985454349540, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: m_Padding.m_Bottom
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958262986393358535, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958262986393358535, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1250565675}
+    - target: {fileID: 2958262986393358535, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayClickSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958262986393358535, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundFXManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958262986393358535, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 280309257}
+    - target: {fileID: 2958262986393358535, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Transform, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2958262986446477831, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: m_Type
@@ -4017,6 +4046,53 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6638364884033184615, guid: 8463a70bc1be4dd4ca2f8cbc3d6bc3bf, type: 3}
   m_PrefabInstance: {fileID: 9049074914629684883}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1250565673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1250565674}
+  - component: {fileID: 1250565675}
+  m_Layer: 0
+  m_Name: SoundFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1250565674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250565673}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1250565675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250565673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430e47d01703948e3895964c691c3bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  soundFXObject: {fileID: 50109519246995819, guid: 8f6316010280f44828e32ffd55a7b46c, type: 3}
+  soundClick: {fileID: 8300000, guid: 7e3fe6f46674648248c847c8bb713528, type: 3}
+  soundRight: {fileID: 8300000, guid: 929c8e9c043ef424c9acb3a9a0b454f0, type: 3}
 --- !u!1001 &1256417788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4836,7 +4912,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 4cbab640ea1d3400297e52c5a6bdc27d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -8928,3 +9004,4 @@ SceneRoots:
   - {fileID: 2131750868}
   - {fileID: 518654989}
   - {fileID: 1957141326}
+  - {fileID: 1250565674}
