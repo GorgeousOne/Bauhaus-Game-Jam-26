@@ -36,10 +36,10 @@ title:Goat
 
 title:Ritual
 ---
-<<if $ritual==3>>
+<<if $ritualChecks==3>>
   The ritual circle is ready. Get out of here?
   ->Yes
-    <<win>>
+    <<PlayWinSequence>>
   ->Ehhh
 <<else>>
   The circle is glowing with faint power.

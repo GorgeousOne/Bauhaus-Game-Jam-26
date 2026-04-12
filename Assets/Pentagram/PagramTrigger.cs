@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PagramTrigger : Interactable {
     public Sprite pentagramLitSprite;
@@ -16,6 +18,7 @@ public class PagramTrigger : Interactable {
         base.Awake();
         texture = GetComponent<SpriteRenderer>();
         isEnabled = false;
+        runner.AddCommandHandler("PlayWinSequence", (Action)PlayWinSequence);
     }
 
     void Start()
@@ -38,6 +41,12 @@ public class PagramTrigger : Interactable {
         isEnabled = true;
         GetComponent<SpriteRenderer>().sprite = pentagramLitSprite;
 
+    }
+
+    public void PlayWinSequence()
+    {
+        Debug.Log("We did it guys, we solved racism");
+        SceneManager.LoadSceneAsync("Outro");
     }
 
 }
