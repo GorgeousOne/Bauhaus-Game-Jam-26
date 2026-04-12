@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
 public class GameState : MonoBehaviour
@@ -20,7 +21,7 @@ public class GameState : MonoBehaviour
             return;
         }
         Instance = this;
-        Invoke(nameof(Cheat), 2f);
+        // Invoke(nameof(Cheat), 2f);
     }
 
     public void solveMask()
@@ -61,5 +62,11 @@ public class GameState : MonoBehaviour
         varStorage.SetValue("$ritualChecks", 3);
         AllPuzzlesSolvedEvent.Invoke();
         Debug.Log("TODO activate pentagram");
+    }
+
+    public void Restart()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
     }
 }
