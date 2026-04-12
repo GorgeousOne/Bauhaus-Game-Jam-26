@@ -12,6 +12,7 @@ public class OrganPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     CanvasGroup canvasGroup;
     RectTransform rect;
     Canvas canvas;
+    AudioSource audioSource;
 
     Vector2 grabOffset;
     public Vector2Int placedAnchor;
@@ -23,6 +24,7 @@ public class OrganPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         rect = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void OnBeginDrag(PointerEventData e)
@@ -44,6 +46,7 @@ public class OrganPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         grabOffset = e.position - rectScreenPoint;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0.7f;
+        SoundFXManager.instance.PlayClickSound(transform);
     }
 
     public void OnDrag(PointerEventData e)
@@ -56,6 +59,7 @@ public class OrganPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1f;
         DragEnd.Invoke(this, e.position - grabOffset, e.pressEventCamera);
+        audioSource.Play();
     }
 
     public void move(Vector2 delta)

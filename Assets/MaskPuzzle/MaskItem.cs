@@ -16,10 +16,12 @@ public class MaskItem : MonoBehaviour, IPointerClickHandler
     RectTransform rect;
     Vector2 origin;
     Vector2 targetPos;
+    AudioSource audioSource;
 
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         rect = GetComponent<RectTransform>();
         origin = rect.position;
     }
@@ -48,12 +50,14 @@ public class MaskItem : MonoBehaviour, IPointerClickHandler
     {
         Debug.Log(name + " Game Object Clicked!");
         MaskClick.Invoke(this);
+        
     }
 
     public void AnimateMoveToInv(Vector2 target)
     {
         targetPos = target;
         animStart = Time.time;
+        audioSource.Play();
     }
 
     //https://easings.net/
