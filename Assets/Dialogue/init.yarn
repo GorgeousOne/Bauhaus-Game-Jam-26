@@ -1,6 +1,6 @@
 title:init
 ---
 <<declare $Mask="empty">>
-<<declare $ritual=0>>
+<<declare $ritualChecks=0>>
 <<declare $goat="dead">>
 ===

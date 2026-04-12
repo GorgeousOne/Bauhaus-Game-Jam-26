@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Yarn.Unity;
 
 public class GameState : MonoBehaviour
 {
@@ -37,8 +38,7 @@ public class GameState : MonoBehaviour
 
     void Cheat()
     {
-        Debug.Log("YOU DID IT");
-        AllPuzzlesSolvedEvent.Invoke();
+        setComplete();
     }
 
     public void solvedGoat()
@@ -51,8 +51,16 @@ public class GameState : MonoBehaviour
     {
         if (MaskSolved && GoatSolved && CandlesSolved)
         {
-            AllPuzzlesSolvedEvent.Invoke();
-            Debug.Log("TODO activate pentagram");
+            setComplete();
         }
+    }
+
+    void setComplete()
+    {
+        DialogueRunner runner = GameObject.FindWithTag("Yarn").GetComponent<DialogueRunner>();
+        InMemoryVariableStorage varStorage = runner.VariableStorage as InMemoryVariableStorage;
+        varStorage.SetValue("$ritualChecks", 3);
+        AllPuzzlesSolvedEvent.Invoke();
+        Debug.Log("TODO activate pentagram");
     }
 }
