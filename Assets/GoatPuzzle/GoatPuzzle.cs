@@ -11,8 +11,7 @@ public class GoatPuzzle : MonoBehaviour
     public RectTransform gridOrigin;
     public float cellSize = 30f;
 
-    [Header("Organs")]
-    public List<OrganPiece> organs;
+    OrganPiece[] organs;
 
     // Grid map: '#' = valid cell, '.' = empty
     // Edit this to match your background image!
@@ -37,7 +36,20 @@ public class GoatPuzzle : MonoBehaviour
         Instance = this;
         rowCount = gridMap.Length;
         maxCols = gridMap.Max(r => r.Length);
+        //first gen cells
         GenerateGrid();
+
+        //then set organs to gr
+        organs = GetComponentsInChildren<OrganPiece>();
+        foreach (OrganPiece piece in organs)
+        {
+            piece.DragEnd.AddListener(OnPieceDrop);
+            piece.transform.SetParent(gridOrigin, true);
+            RectTransform pieceRect = piece.GetComponent<RectTransform>();
+            pieceRect.anchorMin = pieceRect.anchorMax = new Vector2(0, 1);
+            pieceRect.pivot = new Vector2(0, 1);
+        }
+
     }
 
     void GenerateGrid()
@@ -56,7 +68,8 @@ public class GoatPuzzle : MonoBehaviour
 
                 //For testing
                 Image img = cell.AddComponent<Image>();
-                img.color = new Color(0.5f, 0.5f, 0.5f, 0.3f);
+                img.color = new Color(0.5f, 0.5f, 0.5f, 0.7f);
+
 
                 RectTransform rt = cell.GetComponent<RectTransform>();
                 rt.sizeDelta = new Vector2(cellSize, cellSize);
@@ -70,58 +83,70 @@ public class GoatPuzzle : MonoBehaviour
     /// <summary>
     /// Converts a world position to grid coordinates (col, row).
     /// </summary>
-    Vector2Int WorldToGrid(Vector2 worldPos)
+    Vector2Int ScreenToGrid(Vector2 screenPos, Camera cam)
     {
         Vector2 localPos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            gridOrigin, worldPos, null, out localPos);
-
+            gridOrigin, screenPos, null, out localPos);
+        Debug.Log("Drag pos in localpos" + localPos);
         int col = Mathf.FloorToInt(localPos.x / cellSize);
         int row = Mathf.FloorToInt(-localPos.y / cellSize);
 
         return new Vector2Int(col, row);
     }
 
+    // scale grid pos with cell size
     Vector2 GridToAnchoredPos(int col, int row)
     {
         return new Vector2(col * cellSize, -row * cellSize);
     }
 
-        /// <summary>
+
+    /// <summary>
     /// Called by OrganPiece.OnEndDrag. Returns true if piece was placed.
     /// </summary>
-    public bool TryPlacePiece(OrganPiece piece, Vector2 screenPos)
+    public bool TryPlacePiece(OrganPiece piece, Vector2 screenPos, Camera cam)
     {
-        Vector2Int anchor = WorldToGrid(screenPos);
- 
+        Vector2Int gridPos = ScreenToGrid(screenPos, cam);
+        Debug.Log("dragged to" + gridPos);
+
         // Check all cells this organ would occupy
-        List<Vector2Int> cells = new();
+        List<Vector2Int> newOccupiedCells = new();
         foreach (Vector2Int off in piece.shape)
         {
-            Vector2Int cell = anchor + off;
- 
-            if (!validCells.Contains(cell))
+            Vector2Int cell = gridPos + off;
+
+            if (!validCells.Contains(cell)) {
+                Debug.Log("INVALID" + cell);
                 return false;
- 
-            if (occupiedCells.Contains(cell))
+            }
+            if (occupiedCells.Contains(cell)) {
+                Debug.Log("OCCUPIED" + cell);
                 return false;
- 
-            cells.Add(cell);
+            }
+
+            newOccupiedCells.Add(cell);
         }
- 
+
         // Place it
-        foreach (Vector2Int c in cells)
+        foreach (Vector2Int c in newOccupiedCells)
+        {
+            GameObject cell = gridOrigin.transform.Find($"Cell_{c.x}_{c.y}").gameObject;
+            Image img = cell.GetComponent<Image>();
+            img.color = new Color(1f, 0.5f, 0.5f, 0.7f);
             occupiedCells.Add(c);
- 
+        }
+
+
         // Snap the piece to the grid
-        piece.transform.SetParent(gridOrigin, true);
+
+
+        Vector2 screenSnapPos = GridToAnchoredPos(gridPos.x, gridPos.y);
         RectTransform pieceRect = piece.GetComponent<RectTransform>();
-        pieceRect.anchorMin = pieceRect.anchorMax = new Vector2(0, 1);
-        pieceRect.pivot = new Vector2(0, 1);
-        Vector2 snapPos = GridToAnchoredPos(anchor.x, anchor.y);
-        pieceRect.anchoredPosition = snapPos;
- 
-        piece.placedAnchor = anchor;
+        pieceRect.anchoredPosition = screenSnapPos;
+        Debug.Log("SUCCESS" + gridPos + " on screen: " + screenSnapPos);
+
+        piece.placedAnchor = gridPos;
         piece.isPlaced = true;
         CheckWin();
         return true;
@@ -134,7 +159,13 @@ public class GoatPuzzle : MonoBehaviour
     {
         foreach (Vector2Int off in piece.shape)
         {
+            Vector2Int pos = placedAnchor + off;
             occupiedCells.Remove(placedAnchor + off);
+
+            GameObject cell = gridOrigin.transform.Find($"Cell_{pos.x}_{pos.y}").gameObject;
+            Image img = cell.GetComponent<Image>();
+            img.color = new Color(0.5f, 0.5f, 1.0f, 0.7f);
+
         }
     }
 
@@ -156,5 +187,20 @@ public class GoatPuzzle : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    void OnPieceDrop(OrganPiece piece, Vector2 position, Camera cam)
+    {
+        if (TryPlacePiece(piece, position, cam))
+        {
+            // Store where we were placed so we can remove later
+            // (anchoredPosition was set by TryPlacePiece)
+        }
+        else
+        {
+            // Snap back to original position
+            piece.move(new Vector2(cellSize/2, cellSize/2));
+        }
+
     }
 }

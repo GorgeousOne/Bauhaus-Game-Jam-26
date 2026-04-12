@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class OrganPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -12,8 +13,10 @@ public class OrganPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     RectTransform rect;
     Canvas canvas;
 
-    Vector2 startPos;
+    Vector2 grabOffset;
     public Vector2Int placedAnchor;
+
+    public UnityEvent<OrganPiece, Vector2, Camera> DragEnd;
 
     void Awake()
     {
@@ -31,7 +34,15 @@ public class OrganPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             isPlaced = false;
         }
 
-        startPos = rect.anchoredPosition;
+        // RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, e.position, e.pressEventCamera, out Vector2 localClickPos);
+
+        Vector2 rectScreenPoint = RectTransformUtility.WorldToScreenPoint(
+            e.pressEventCamera,
+            rect.position
+        );
+
+        grabOffset = e.position - rectScreenPoint;
+        Debug.Log("grab: rect" +rectScreenPoint + " offset " + grabOffset + " total " + (e.position - grabOffset));
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0.7f;
     }
@@ -45,16 +56,17 @@ public class OrganPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1f;
+        Vector2 rectScreenPoint = RectTransformUtility.WorldToScreenPoint(
+            e.pressEventCamera,
+            rect.position
+        );
+        Debug.Log("drop: rect" + rectScreenPoint + " offset " + grabOffset + " total " + (e.position - grabOffset));
+        //DragEnd.Invoke(this, e.position - grabOffset, e.pressEventCamera);
+        DragEnd.Invoke(this, e.position - grabOffset, e.pressEventCamera);
+    }
 
-        if (GoatPuzzle.Instance.TryPlacePiece(this, e.position))
-        {
-            // Store where we were placed so we can remove later
-            // (anchoredPosition was set by TryPlacePiece)
-        }
-        else
-        {
-            // Snap back to original position
-            rect.anchoredPosition = startPos;
-        }
+    public void move(Vector2 delta)
+    {
+        rect.anchoredPosition += delta;
     }
 }
