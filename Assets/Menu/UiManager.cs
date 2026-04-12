@@ -27,8 +27,14 @@ public class UiManager : MonoBehaviour
 		Instance ??= this;
 		startScreen.gameObject.SetActive(true);
 		pauseScreen.gameObject.SetActive(false);
-		introScreen.SetActive(false);
 		introCanvasGroup = introScreen.GetComponent<CanvasGroup>();
+		startScreen.SetActive(false);
+		introScreen.SetActive(true);
+		introCanvasGroup.alpha = 1f;
+		currentFrame = 0;
+		isFading = false;
+		introImage.sprite = introFrames[0];
+		isInIntro = true;
 	}
 
 	public void HideStartScreen()
@@ -87,7 +93,7 @@ public class UiManager : MonoBehaviour
 	{
 		isInIntro = false;
 		introScreen.SetActive(false);
-		SceneManager.LoadScene("Level_1");
+		SceneManager.LoadScene("Game");
 	}
 
 }
