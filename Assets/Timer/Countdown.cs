@@ -40,10 +40,7 @@ public class Countdown : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        float easedT = t * t;
-        easedT *= easedT;   // t^4
-
-        float zoom = startZoom * Mathf.Pow(endZoom / startZoom, easedT);
+        float zoom = startZoom * Mathf.Pow(endZoom / startZoom, t);
         transform.localScale = Vector3.one * zoom;
    }
 

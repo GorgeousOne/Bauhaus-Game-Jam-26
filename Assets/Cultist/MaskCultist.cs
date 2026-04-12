@@ -37,7 +37,13 @@ public class MaskCultist : Cultist
 
     public void DeleteMask(bool success)
     {
+        if (inv.slots[0].item.gameObject.GetComponent<MaskItem>().IsCorrectMask)
+        {
+            GameState.Instance.solveMask();
+        }
         Destroy(inv.slots[0].item.gameObject);
         inv.slots[0].item = null;
+
+
     }
 }

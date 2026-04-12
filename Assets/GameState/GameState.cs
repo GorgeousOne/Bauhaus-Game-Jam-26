@@ -21,7 +21,7 @@ public class GameState : MonoBehaviour
             return;
         }
         Instance = this;
-        // Invoke(nameof(Cheat), 2f);
+        Invoke(nameof(Cheat), 2f);
     }
 
     public void solveMask()
@@ -38,7 +38,8 @@ public class GameState : MonoBehaviour
 
     void Cheat()
     {
-        setComplete();
+        // setComplete();
+        checkCompletion();
     }
 
     public void solvedGoat()

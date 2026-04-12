@@ -30,6 +30,8 @@ public class GoatPuzzleTrigger : Interactable
         texture.sprite = goatHealedSprite;
         texture.color = new Color(0.5489277f, 0.7735849f, 0.4539337f);
         isEnabled = false;
+        GameState.Instance.solvedGoat();
+        varStorage.SetValue("$goat", "dead");
     }
 
     public override void SetHighlighted(bool state)

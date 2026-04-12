@@ -1494,7 +1494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
   MaskSolved: 0
-  CandlesSolved: 0
+  CandlesSolved: 1
   GoatSolved: 0
   AllPuzzlesSolvedEvent:
     m_PersistentCalls:
@@ -2293,7 +2293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ce7ed5f8bb9f94c9c14575c8385667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  totalTime: 150
+  totalTime: 180
   heightMeter: {fileID: 913067609}
   gameOverScreen: {fileID: 332451362}
   isPaused: 0
@@ -7221,7 +7221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8054137930023155446, guid: 198200a7ecafedf4a8d217ff154e6050, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.26235
+      value: 6.76235
       objectReference: {fileID: 0}
     - target: {fileID: 8054137930023155446, guid: 198200a7ecafedf4a8d217ff154e6050, type: 3}
       propertyPath: m_LocalPosition.y
