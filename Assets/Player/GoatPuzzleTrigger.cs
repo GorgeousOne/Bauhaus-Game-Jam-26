@@ -9,8 +9,9 @@ public class GoatPuzzleTrigger : Interactable
         goatPuzzle.Show();
     }
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         if (goatPuzzle == null)
         {
             Debug.LogError("GoatPuzzleTrigger is missing reference to GoatPuzzle");

@@ -88,9 +88,8 @@ public class GoatPuzzle : MonoBehaviour
         Vector2 localPos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             gridOrigin, screenPos, null, out localPos);
-        Debug.Log("Drag pos in localpos" + localPos);
-        int col = Mathf.FloorToInt(localPos.x / cellSize);
-        int row = Mathf.FloorToInt(-localPos.y / cellSize);
+        int col = Mathf.FloorToInt(localPos.x / cellSize + 0.5f);
+        int row = Mathf.FloorToInt(-localPos.y / cellSize + 0.5f);
 
         return new Vector2Int(col, row);
     }
@@ -108,7 +107,6 @@ public class GoatPuzzle : MonoBehaviour
     public bool TryPlacePiece(OrganPiece piece, Vector2 screenPos, Camera cam)
     {
         Vector2Int gridPos = ScreenToGrid(screenPos, cam);
-        Debug.Log("dragged to" + gridPos);
 
         // Check all cells this organ would occupy
         List<Vector2Int> newOccupiedCells = new();
@@ -117,11 +115,9 @@ public class GoatPuzzle : MonoBehaviour
             Vector2Int cell = gridPos + off;
 
             if (!validCells.Contains(cell)) {
-                Debug.Log("INVALID" + cell);
                 return false;
             }
             if (occupiedCells.Contains(cell)) {
-                Debug.Log("OCCUPIED" + cell);
                 return false;
             }
 
@@ -139,12 +135,9 @@ public class GoatPuzzle : MonoBehaviour
 
 
         // Snap the piece to the grid
-
-
         Vector2 screenSnapPos = GridToAnchoredPos(gridPos.x, gridPos.y);
         RectTransform pieceRect = piece.GetComponent<RectTransform>();
         pieceRect.anchoredPosition = screenSnapPos;
-        Debug.Log("SUCCESS" + gridPos + " on screen: " + screenSnapPos);
 
         piece.placedAnchor = gridPos;
         piece.isPlaced = true;

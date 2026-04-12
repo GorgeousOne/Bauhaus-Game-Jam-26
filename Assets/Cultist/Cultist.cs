@@ -8,8 +8,9 @@ public class Cultist : Interactable
 
     protected DialogueRunner runner;
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         runner = GameObject.FindWithTag("Yarn").GetComponent<DialogueRunner>();
 
         if (runner == null)

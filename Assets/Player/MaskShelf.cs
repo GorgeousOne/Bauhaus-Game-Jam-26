@@ -12,8 +12,9 @@ public class MaskShelf : Interactable
         maskUi.Show();
     }
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         if (maskUi == null)
         {
             Debug.LogError("MaskShelf is missing reference to MaskUi");

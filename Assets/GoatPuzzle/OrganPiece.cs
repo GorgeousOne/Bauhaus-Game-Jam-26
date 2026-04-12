@@ -42,7 +42,6 @@ public class OrganPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         );
 
         grabOffset = e.position - rectScreenPoint;
-        Debug.Log("grab: rect" +rectScreenPoint + " offset " + grabOffset + " total " + (e.position - grabOffset));
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0.7f;
     }
@@ -56,12 +55,6 @@ public class OrganPiece : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1f;
-        Vector2 rectScreenPoint = RectTransformUtility.WorldToScreenPoint(
-            e.pressEventCamera,
-            rect.position
-        );
-        Debug.Log("drop: rect" + rectScreenPoint + " offset " + grabOffset + " total " + (e.position - grabOffset));
-        //DragEnd.Invoke(this, e.position - grabOffset, e.pressEventCamera);
         DragEnd.Invoke(this, e.position - grabOffset, e.pressEventCamera);
     }
 

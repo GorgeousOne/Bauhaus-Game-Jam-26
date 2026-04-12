@@ -10,33 +10,43 @@ public class PlayerInteract : MonoBehaviour
 
     }
 
+    Interactable last;
+
     void Update()
 	{
-		if (InputManager.I.InteractInput)
+        if (last != null)
         {
-            Vector3 playerPos = transform.position;
-            Interactable closest = null;
-            float minDist = float.PositiveInfinity;
+            last.SetHighlighted(false);
+            last = null;
+        }
+        Vector3 playerPos = transform.position;
+        Interactable closest = null;
+        float minDist = float.PositiveInfinity;
 
-            //check the distance between player and each interact
-            foreach (Interactable interact in interacts)
+        //check the distance between player and each interact
+        foreach (Interactable interact in interacts)
+        {
+            //calculate the distance to the interact
+            float dist = (interact.transform.position - playerPos).magnitude;
+
+            //save the smallest distance to any interact
+            if (dist < interact.radius && dist < minDist)
             {
-                //calculate the distance to the interact
-                float dist = (interact.transform.position - playerPos).magnitude;
-
-                //save the smallest distance to any interact
-                if (dist < interact.radius && dist < minDist)
-                {
-                    minDist = dist;
-                    closest = interact;
-                }
+                minDist = dist;
+                closest = interact;
             }
-            if (closest != null)
+        }
+        if (closest != null)
+        {
+            if (InputManager.I.InteractInput)
             {
                 closest.OnInteract();
             }
+            if (last != closest) {
+                closest.SetHighlighted(true);
+                last = closest;
+            }
         }
-
 	}
 }
 
