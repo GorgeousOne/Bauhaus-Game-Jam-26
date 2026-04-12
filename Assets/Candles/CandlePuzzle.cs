@@ -40,7 +40,8 @@ public class CandlePuzzle : MonoBehaviour
 
             if (numCorrectCandles == candleOrder.Length)
             {
-                //GameState.Instance.solvedCandles();
+                GameState.Instance.solvedCandles();
+                Invoke(nameof(Hide), 1.5f);
             }
         } else
         {

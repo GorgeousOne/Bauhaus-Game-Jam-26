@@ -9,7 +9,7 @@ public class GoatPuzzle : MonoBehaviour
 
     [Header("Grid Settings")]
     public RectTransform gridOrigin;
-    public float cellSize = 30f;
+    public float cellSize = 33.333f;
 
     OrganPiece[] organs;
 
