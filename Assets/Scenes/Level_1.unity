@@ -1344,6 +1344,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1691531835}
     m_Modifications:
+    - target: {fileID: 490123054206275602, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
+      propertyPath: m_text
+      value: the spaceship has crashed
+      objectReference: {fileID: 0}
+    - target: {fileID: 490123054206275602, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
+      propertyPath: m_fontSize
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 490123054206275602, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490123054206275602, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490123054206275602, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490123054206275602, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 490123054206275602, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
     - target: {fileID: 4775379284311268378, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1436,13 +1464,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7691354838885021711, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691354838885021711, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7691354838885021711, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7747612001084879409, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
       propertyPath: m_Name
       value: GameOver
       objectReference: {fileID: 0}
     - target: {fileID: 7747612001084879409, guid: 9bc5fe28b1d807445adf12e4a1ca93a6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1493,9 +1533,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2acc84e13595794408f72e6527c4aa07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
-  MaskSolved: 0
+  MaskSolved: 1
   CandlesSolved: 1
-  GoatSolved: 0
+  GoatSolved: 1
   AllPuzzlesSolvedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -6856,19 +6896,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8054137930023155446, guid: 198200a7ecafedf4a8d217ff154e6050, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.401065
       objectReference: {fileID: 0}
     - target: {fileID: 8054137930023155446, guid: 198200a7ecafedf4a8d217ff154e6050, type: 3}
       propertyPath: m_LocalScale.y
+      value: 1.3556029
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054137930023155446, guid: 198200a7ecafedf4a8d217ff154e6050, type: 3}
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8054137930023155446, guid: 198200a7ecafedf4a8d217ff154e6050, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.01235
+      value: 3.2129
       objectReference: {fileID: 0}
     - target: {fileID: 8054137930023155446, guid: 198200a7ecafedf4a8d217ff154e6050, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4422102
+      value: -3.6647
       objectReference: {fileID: 0}
     - target: {fileID: 8054137930023155446, guid: 198200a7ecafedf4a8d217ff154e6050, type: 3}
       propertyPath: m_LocalPosition.z

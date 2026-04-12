@@ -5,12 +5,13 @@ public class OutroHandler : MonoBehaviour
 {
     [SerializeField] VideoPlayer videoPlayer;
     [SerializeField] GameObject videorawimage;
-    
+    [SerializeField] GameObject blackBack;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake() {
         videoPlayer = GetComponent<VideoPlayer>();
-        
+
 videoPlayer.loopPointReached += OnMovieFinished;
     }
     // Update is called once per frame
@@ -24,6 +25,7 @@ videoPlayer.loopPointReached += OnMovieFinished;
 void OnMovieFinished(UnityEngine.Video.VideoPlayer vp)
 {
     Destroy(videorawimage);
+    Destroy(blackBack);
     Destroy(this);
 }
 
