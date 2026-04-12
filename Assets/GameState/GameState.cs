@@ -4,9 +4,9 @@ public class GameState : MonoBehaviour
 {
     public static GameState Instance;
 
-    bool maskSolved;
-    bool candlesSolved;
-    bool goatSolved;
+    public bool MaskSolved;
+    public bool CandlesSolved;
+    public bool GoatSolved;
 
     void Awake()
     {
@@ -21,26 +21,26 @@ public class GameState : MonoBehaviour
 
     public void solveMask()
     {
-        maskSolved = true;
+        MaskSolved = true;
         checkCompletion();
     }
 
     public void solvedCandles()
     {
-        candlesSolved = true;
+        CandlesSolved = true;
         checkCompletion();
 
     }
 
     public void solvedGoat()
     {
-        goatSolved = true;
+        GoatSolved = true;
         checkCompletion();
     }
 
     void checkCompletion()
     {
-        if (maskSolved && goatSolved && candlesSolved)
+        if (MaskSolved && GoatSolved && CandlesSolved)
         {
             Debug.Log("TODO activate pentagram");
         }

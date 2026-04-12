@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Yarn.Unity;
 
 public class MaskUi : MonoBehaviour
 {
@@ -10,9 +11,12 @@ public class MaskUi : MonoBehaviour
     public GameObject maskContainer;
     List<MaskItem> masks = new();
 
+    DialogueRunner runner;
 
     void Awake()
     {
+        runner = GameObject.FindWithTag("Yarn").GetComponent<DialogueRunner>();
+
         if (inv == null)
         {
             Debug.LogError("MaskUi is missing reference to inventory");
@@ -30,8 +34,9 @@ public class MaskUi : MonoBehaviour
     {
         //if mask gets clicked, simply check if inventory does not already contain mask
         UI_ItemSlot slot0 = inv.slots[0];
-        if (slot0.item != null)
+        if (GameState.Instance.MaskSolved || slot0.item != null)
         {
+            runner.StartDialogue("MaskShelfComplete");
             return;
         }
         slot0.item = mask.GetComponent<RectTransform>();
