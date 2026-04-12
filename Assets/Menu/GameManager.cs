@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
 	//load all levels additively ontop of Game scene
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        SceneManager.LoadScene(sceneName);
 		loadedScenes.Add(sceneName);
     }
 
