@@ -3,6 +3,7 @@ using UnityEngine;
 public class GoatPuzzleTrigger : Interactable
 {
     public GoatPuzzle goatPuzzle;
+    public Sprite goatHealedSprite;
 
     public override void OnInteract()
     {

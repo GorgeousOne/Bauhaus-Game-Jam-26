@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 164.08792, y: -80.49707}
-  m_SizeDelta: {x: 40, y: 8}
+  m_SizeDelta: {x: 60, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &154111981202138242
 CanvasRenderer:
@@ -59,14 +59,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.48113203, g: 0.6741755, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5600e822b8fed0c4a8a0534e270a32b3, type: 3}
+  m_Sprite: {fileID: -7414090908898952512, guid: 3e356ce352c65394390b898962f36790, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -88,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac8d7874b234584ebf2e9bf140059c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  imgLit: {fileID: 21300000, guid: afe07cf804884ba45a32e35811335d9a, type: 3}
-  imgUnlit: {fileID: 21300000, guid: 5600e822b8fed0c4a8a0534e270a32b3, type: 3}
+  imgLit: {fileID: 2439228211136827020, guid: 3e356ce352c65394390b898962f36790, type: 3}
+  imgUnlit: {fileID: -7414090908898952512, guid: 3e356ce352c65394390b898962f36790, type: 3}
   CandleClick:
     m_PersistentCalls:
       m_Calls: []
