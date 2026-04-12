@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameState : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class GameState : MonoBehaviour
     public bool MaskSolved;
     public bool CandlesSolved;
     public bool GoatSolved;
+    public UnityEvent AllPuzzlesSolvedEvent;
+
 
     void Awake()
     {
@@ -17,6 +20,7 @@ public class GameState : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        Invoke(nameof(Cheat), 2f);
     }
 
     public void solveMask()
@@ -29,7 +33,12 @@ public class GameState : MonoBehaviour
     {
         CandlesSolved = true;
         checkCompletion();
+    }
 
+    void Cheat()
+    {
+        Debug.Log("YOU DID IT");
+        AllPuzzlesSolvedEvent.Invoke();
     }
 
     public void solvedGoat()
@@ -42,6 +51,7 @@ public class GameState : MonoBehaviour
     {
         if (MaskSolved && GoatSolved && CandlesSolved)
         {
+            AllPuzzlesSolvedEvent.Invoke();
             Debug.Log("TODO activate pentagram");
         }
     }

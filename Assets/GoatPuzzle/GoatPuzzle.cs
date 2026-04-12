@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GoatPuzzle : MonoBehaviour
@@ -10,8 +12,10 @@ public class GoatPuzzle : MonoBehaviour
     [Header("Grid Settings")]
     public RectTransform gridOrigin;
     public float cellSize = 33.333f;
+    public GameObject gameContainer;
 
     OrganPiece[] organs;
+    public UnityEvent SolveEvent;
 
     // Grid map: '#' = valid cell, '.' = empty
     // Edit this to match your background image!
@@ -40,7 +44,7 @@ public class GoatPuzzle : MonoBehaviour
         GenerateGrid();
 
         //then set organs to gr
-        organs = GetComponentsInChildren<OrganPiece>();
+        organs = gameContainer.GetComponentsInChildren<OrganPiece>();
         foreach (OrganPiece piece in organs)
         {
             piece.DragEnd.AddListener(OnPieceDrop);
@@ -67,9 +71,8 @@ public class GoatPuzzle : MonoBehaviour
                 cell.transform.SetParent(gridOrigin, false);
 
                 //For testing
-                Image img = cell.AddComponent<Image>();
-                img.color = new Color(0.5f, 0.5f, 0.5f, 0.7f);
-
+                // Image img = cell.AddComponent<Image>();
+                // img.color = new Color(0.5f, 0.5f, 0.5f, 0.7f);
 
                 RectTransform rt = cell.GetComponent<RectTransform>();
                 rt.sizeDelta = new Vector2(cellSize, cellSize);
@@ -127,9 +130,10 @@ public class GoatPuzzle : MonoBehaviour
         // Place it
         foreach (Vector2Int c in newOccupiedCells)
         {
-            GameObject cell = gridOrigin.transform.Find($"Cell_{c.x}_{c.y}").gameObject;
-            Image img = cell.GetComponent<Image>();
-            img.color = new Color(1f, 0.5f, 0.5f, 0.7f);
+            // GameObject cell = gridOrigin.transform.Find($"Cell_{c.x}_{c.y}").gameObject;
+            // Image img = cell.GetComponent<Image>();
+            // img.color = new Color(1f, 0.5f, 0.5f, 0.7f);
+
             occupiedCells.Add(c);
         }
 
@@ -155,10 +159,9 @@ public class GoatPuzzle : MonoBehaviour
             Vector2Int pos = placedAnchor + off;
             occupiedCells.Remove(placedAnchor + off);
 
-            GameObject cell = gridOrigin.transform.Find($"Cell_{pos.x}_{pos.y}").gameObject;
-            Image img = cell.GetComponent<Image>();
-            img.color = new Color(0.5f, 0.5f, 1.0f, 0.7f);
-
+            // GameObject cell = gridOrigin.transform.Find($"Cell_{pos.x}_{pos.y}").gameObject;
+            // Image img = cell.GetComponent<Image>();
+            // img.color = new Color(0.5f, 0.5f, 1.0f, 0.7f);
         }
     }
 
@@ -167,6 +170,7 @@ public class GoatPuzzle : MonoBehaviour
         if (occupiedCells.Count >= validCells.Count)
         {
             Debug.Log("Puzzle gelöst!");
+            SolveEvent.Invoke();
             Invoke(nameof(Hide), 1.5f);
             // TODO: Win-Event auslösen
         }
@@ -174,12 +178,12 @@ public class GoatPuzzle : MonoBehaviour
 
     public void Show()
     {
-        gameObject.SetActive(true);
+        gameContainer.SetActive(true);
     }
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        gameContainer.SetActive(false);
     }
 
     void OnPieceDrop(OrganPiece piece, Vector2 position, Camera cam)

@@ -38,7 +38,7 @@ public abstract class Interactable : MonoBehaviour
     public abstract void OnInteract();
 
 
-    public void SetHighlighted(bool state) {
+    public virtual void SetHighlighted(bool state) {
         isHigh = state;
         texture.color = isHigh ? highCol : baseCol;
     }

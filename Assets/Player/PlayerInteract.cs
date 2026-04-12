@@ -14,11 +14,6 @@ public class PlayerInteract : MonoBehaviour
 
     void Update()
 	{
-        if (last != null)
-        {
-            last.SetHighlighted(false);
-            last = null;
-        }
         Vector3 playerPos = transform.position;
         Interactable closest = null;
         float minDist = float.PositiveInfinity;
@@ -40,13 +35,21 @@ public class PlayerInteract : MonoBehaviour
                 closest = interact;
             }
         }
-        if (closest != null)
+        if (closest == null)
         {
+            //remove highlight
+            last?.SetHighlighted(false);
+            last = null;
+        } else
+        {
+            //interact if key pressed
             if (InputManager.I.InteractInput)
             {
                 closest.OnInteract();
             }
             if (last != closest) {
+                //show interact highlight
+                last?.SetHighlighted(false);
                 closest.SetHighlighted(true);
                 last = closest;
             }
