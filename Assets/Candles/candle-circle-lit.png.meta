@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 1976f804ea122194fb96b8442c557ce6
+guid: 22628a9cafabe384dabb23580612be82
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7098002210105065526
-    second: Pentagon_Glow_0
+      213: 3918999236448280799
+    second: candle-circle-lit_0
+  - first:
+      213: 5500516725669729295
+    second: candle-circle-lit_1
+  - first:
+      213: -8640277943560780502
+    second: candle-circle-lit_2
+  - first:
+      213: 6132073053131781872
+    second: candle-circle-lit_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pentagon_Glow_0
+      name: candle-circle-lit_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 527
-        height: 466
+        x: 106
+        y: 197
+        width: 22
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 630004c376b218260800000000000000
-      internalID: 7098002210105065526
+      spriteID: fd0e683ba05136630800000000000000
+      internalID: 3918999236448280799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: candle-circle-lit_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 118
+        width: 21
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0493aaa1d2c55c40800000000000000
+      internalID: 5500516725669729295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: candle-circle-lit_2
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 0
+        width: 186
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a25ca6d0df0971880800000000000000
+      internalID: -8640277943560780502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: candle-circle-lit_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 118
+        width: 21
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f63aa4e3ff791550800000000000000
+      internalID: 6132073053131781872
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Pentagon_Glow_0: 7098002210105065526
+      candle-circle-lit_0: 3918999236448280799
+      candle-circle-lit_1: 5500516725669729295
+      candle-circle-lit_2: -8640277943560780502
+      candle-circle-lit_3: 6132073053131781872
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

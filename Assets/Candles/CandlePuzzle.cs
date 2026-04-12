@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CandlePuzzle : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CandlePuzzle : MonoBehaviour
     public AudioClip lightUpSound;
 
     public GameObject candleUi;
+    public UnityEvent FinishEvent;
 
     AudioSource speaker;
 
@@ -18,11 +20,12 @@ public class CandlePuzzle : MonoBehaviour
     void Awake()
     {
         speaker = GetComponent<AudioSource>();
-        candles = GetComponentsInChildren<CandleLogic>();
-
+        candles = candleUi.transform.GetComponentsInChildren<CandleLogic>();
+        Debug.Log("trying to find candles");
         foreach (CandleLogic c in candles)
         {
             c.CandleClick.AddListener(OnCandleClick);
+            Debug.Log(c);
         }
     }
 
@@ -40,7 +43,9 @@ public class CandlePuzzle : MonoBehaviour
 
             if (numCorrectCandles == candleOrder.Length)
             {
-                //GameState.Instance.solvedCandles();
+                GameState.Instance.solvedCandles();
+                FinishEvent.Invoke();
+                Invoke(nameof(Hide), 1.5f);
             }
         } else
         {
@@ -52,5 +57,15 @@ public class CandlePuzzle : MonoBehaviour
                 numCorrectCandles = 0;
             }
         }
+    }
+
+    public void Show()
+    {
+        candleUi.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        candleUi.SetActive(false);
     }
 }

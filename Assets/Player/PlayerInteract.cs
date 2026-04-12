@@ -26,6 +26,10 @@ public class PlayerInteract : MonoBehaviour
         //check the distance between player and each interact
         foreach (Interactable interact in interacts)
         {
+            if (!interact.isEnabled)
+            {
+                continue;
+            }
             //calculate the distance to the interact
             float dist = (interact.transform.position - playerPos).magnitude;
 
