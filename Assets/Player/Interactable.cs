@@ -5,7 +5,7 @@ public abstract class Interactable : MonoBehaviour
 {
 
     Color baseCol = new Color(1f, 1f, 1f);
-    Color highCol = new Color(0.3f, 0.3f, 0.3f);
+    Color highCol = new Color(0.5f, 0.5f, 0.5f);
 
     public float radius = 1f;
     bool isHigh;

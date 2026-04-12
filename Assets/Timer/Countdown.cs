@@ -11,6 +11,9 @@ public class Countdown : MonoBehaviour
     public bool isPaused = false;
     public float startTime;
 
+    public float startZoom = 0.5f;
+    public float endZoom = 10f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,16 +30,22 @@ public class Countdown : MonoBehaviour
     void Update()
     {
         float delta = Time.time - startTime;
-        float progress = delta / totalTime;
-        heightMeter.value = 1 - progress;
+        float t = delta / totalTime;
+        heightMeter.value = 1 - t;
 
-        if (progress >= 1)
+        if (t >= 1)
         {
             Debug.Log("BOOOOOM");
             gameOverScreen.SetActive(true);
             gameObject.SetActive(false);
         }
-    }
+
+        float easedT = t * t;
+        easedT *= easedT;   // t^4
+
+        float zoom = startZoom * Mathf.Pow(endZoom / startZoom, easedT);
+        transform.localScale = Vector3.one * zoom;
+   }
 
     public void ReloadScene()
     {
