@@ -1,0 +1,56 @@
+title:GoatMan
+---
+<<if $goat=="dead">>
+  You know, I thought you'd be a little taller.
+  ->I want to go home
+   You can do that if you perform the ritual a second time.
+   But you would need to sacrifice another goat..
+   ->What's wrong with this one
+      Demon, this goat has been gutted.
+      How do you sacrifice what has already perished?
+     ->Just put it back together
+       If you say so. Feel free to try.
+  ->Is that goat real
+   Yes. I normally oppose to such acts, but we couldn't find a proxy in time.
+    ->Does that even work
+      How would I know? We haven't tried it.
+  ->Nevermind
+<<else>>
+  Huh, you actually did it. You should wash your hands...
+  ->There's no sink here
+    Well, we didn't plan to survive...
+<<endif>>
+===
+
+title:Goat
+---
+<<if $goat=="dead">>
+  Looks like it's seen better days.
+  ->Stick your hands in it
+   <<StartGoatGame>>
+  ->No thanks
+<<else>>
+  Looks good enough to be killed again.
+<<endif>>
+===
+
+title:Ritual
+---
+<<if $ritual==3>>
+  The ritual circle is ready. Get out of here?
+  ->Yes
+    <<win>>
+  ->Ehhh
+<<else>>
+  The circle is glowing with faint power.
+  Looks like it's not ready yet.
+<<endif>>
+===
+
+title:Candles
+---
+Light the candles?
+->Sure
+  <<StartCandleGame>>
+->Not now
+===

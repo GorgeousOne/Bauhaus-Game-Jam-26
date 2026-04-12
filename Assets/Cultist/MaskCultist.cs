@@ -1,19 +1,15 @@
 using UnityEngine;
-using UnityEngine.UI;
 using Yarn.Unity;
-using Yarn.Unity.Attributes;
 
 public class MaskCultist : Cultist
 {
 
 
     public UI_Inventory inv;
-    InMemoryVariableStorage varStorage;
 
     protected override void Awake()
     {
         base.Awake();
-        varStorage = runner.VariableStorage as InMemoryVariableStorage;
         runner.AddCommandHandler<bool>(
             "delete_mask",
             DeleteMask
