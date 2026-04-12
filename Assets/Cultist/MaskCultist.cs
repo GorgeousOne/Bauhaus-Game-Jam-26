@@ -18,6 +18,11 @@ public class MaskCultist : Cultist
             "delete_mask",
             DeleteMask
         );
+
+        if (inv == null)
+        {
+            Debug.LogWarning(gameObject.name + " missing inventory reference :(");
+        }
     }
 
     public override void OnInteract()
@@ -36,7 +41,6 @@ public class MaskCultist : Cultist
 
     public void DeleteMask(bool success)
     {
-        Debug.Log("destroy", inv.slots[0].item.gameObject);
         Destroy(inv.slots[0].item.gameObject);
         inv.slots[0].item = null;
     }
