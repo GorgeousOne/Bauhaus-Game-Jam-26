@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 	{
 		IsGameRunning = true;
 		LoadScene("Level_1");
-		UiManager.Instance.HideStartScreen();
 	}
 
 

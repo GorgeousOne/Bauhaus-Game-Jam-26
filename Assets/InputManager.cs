@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class InputManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class InputManager : MonoBehaviour
 	public bool MenuOpenInput {get; private set;}
 	public bool MenuCloseInput {get; private set;}
 
+	public bool ClickInput { get; private set; }
+	private InputAction clickAction;
 	private InputAction moveAction;
 	private InputAction interactAction;
 	private InputAction menuOpenAction;
@@ -26,6 +29,7 @@ public class InputManager : MonoBehaviour
 		interactAction = PlayerInput.actions["Interact"];
 		menuOpenAction = PlayerInput.actions["MenuOPEN"];
 		menuCloseAction = PlayerInput.actions["MenuCLOSE"];
+		clickAction = PlayerInput.actions["UI/Click"];
 	}
 
 	void Update()
@@ -34,5 +38,6 @@ public class InputManager : MonoBehaviour
 		InteractInput = interactAction.WasPressedThisFrame();
 		MenuOpenInput = menuOpenAction.WasPressedThisFrame();
 		MenuCloseInput = menuCloseAction.WasPressedThisFrame();
+		ClickInput = clickAction.WasPressedThisFrame();
 	}
 }
