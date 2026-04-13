@@ -799,7 +799,7 @@ Transform:
   m_GameObject: {fileID: 270978802}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0.98, z: -10}
+  m_LocalPosition: {x: -0.114, y: -0.271, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1533,9 +1533,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2acc84e13595794408f72e6527c4aa07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
-  MaskSolved: 1
-  CandlesSolved: 1
-  GoatSolved: 1
+  MaskSolved: 0
+  CandlesSolved: 0
+  GoatSolved: 0
   AllPuzzlesSolvedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2130,7 +2130,7 @@ Transform:
   m_GameObject: {fileID: 518654987}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.153, y: 1.264, z: 0}
+  m_LocalPosition: {x: -0.153, y: 1.048, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2148,7 +2148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51bef99da8dd5c446affe1d9cad2bb47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CandlUiTrigger
-  radius: 2
+  radius: 1
   isEnabled: 1
   candlePuzzle: {fileID: 40049949071052786}
   candlesLitSprite: {fileID: 21300000, guid: 22628a9cafabe384dabb23580612be82, type: 3}
@@ -5380,7 +5380,7 @@ Transform:
   m_GameObject: {fileID: 1413025625}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0.98, z: -10}
+  m_LocalPosition: {x: -0.114, y: -0.271, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9157,7 +9157,7 @@ Transform:
   m_GameObject: {fileID: 1078338792765247256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0.98, z: 0}
+  m_LocalPosition: {x: -0.114, y: -0.271, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

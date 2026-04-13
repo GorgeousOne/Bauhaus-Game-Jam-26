@@ -59,11 +59,13 @@ public class CandlePuzzle : MonoBehaviour
 
     public void Show()
     {
+        InputManager.I.IsUiOpen = true;
         candleUi.SetActive(true);
     }
 
     public void Hide()
     {
+        InputManager.I.IsUiOpen = false;
         candleUi.SetActive(false);
     }
 }

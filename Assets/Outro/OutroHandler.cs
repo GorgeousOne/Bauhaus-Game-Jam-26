@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class OutroHandler : MonoBehaviour
@@ -7,28 +9,63 @@ public class OutroHandler : MonoBehaviour
     [SerializeField] GameObject videorawimage;
     [SerializeField] GameObject blackBack;
 
+	public GameObject outroScreen;
+	public Image outroImage;
+    public Sprite[] outroFrames;
+
+    public float fadeDuration = 1f;
+	private bool isFading;
+    CanvasGroup outroCanvasGroup;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    bool videoFinished = false;
+    int currentFrame = 0;
 
-    void Awake() {
-        videoPlayer = GetComponent<VideoPlayer>();
-
-videoPlayer.loopPointReached += OnMovieFinished;
+    void Awake()
+    {
+        videoPlayer.loopPointReached += OnMovieFinished;
+        outroImage.sprite = outroFrames[currentFrame];
+        outroCanvasGroup = outroScreen.GetComponent<CanvasGroup>();
     }
-    // Update is called once per frame
+   
+    void Update()
+	{
+        if (!videoFinished)
+        {
+            return;
+        }
+		// outro: bei Klick nächster Frame
+		if (isFading)
+        {
+            outroCanvasGroup.alpha -= Time.deltaTime / fadeDuration;
+            if (outroCanvasGroup.alpha <= 0)
+            {
+                EndOutro();
+            }
+        } else if (InputManager.I.ClickInput)
+		{
+            currentFrame++;
+            if (currentFrame < outroFrames.Length)
+            {
+                outroImage.sprite = outroFrames[currentFrame];
+            }
+            else
+            {
+                isFading = true;
+            }
+		}
+	}
 
-        // Source - https://stackoverflow.com/a/68048325
-// Posted by amitklein, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-04-12, License - CC BY-SA 4.0
+    void EndOutro()
+    {
+        SceneManager.LoadScene("Game");
+    }
 
-
-//the action on finish
-void OnMovieFinished(UnityEngine.Video.VideoPlayer vp)
-{
-    Destroy(videorawimage);
-    Destroy(blackBack);
-    Destroy(this);
-}
-
-
-
+    //the action on finish
+    void OnMovieFinished(VideoPlayer player)
+    {
+        videorawimage.SetActive(false);
+        blackBack.SetActive(false);
+        videoFinished = true;
+    }
 }

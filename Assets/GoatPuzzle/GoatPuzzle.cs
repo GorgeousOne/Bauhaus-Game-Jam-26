@@ -1,9 +1,6 @@
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class GoatPuzzle : MonoBehaviour
 {
@@ -29,7 +26,6 @@ public class GoatPuzzle : MonoBehaviour
         "########..",  // Row 5
     };
 
-    int maxCols;
     int rowCount;
 
     HashSet<Vector2Int> validCells = new();
@@ -39,7 +35,6 @@ public class GoatPuzzle : MonoBehaviour
     {
         Instance = this;
         rowCount = gridMap.Length;
-        maxCols = gridMap.Max(r => r.Length);
         //first gen cells
         GenerateGrid();
 
@@ -178,11 +173,13 @@ public class GoatPuzzle : MonoBehaviour
 
     public void Show()
     {
+        InputManager.I.IsUiOpen = true;
         gameContainer.SetActive(true);
     }
 
     public void Hide()
     {
+        InputManager.I.IsUiOpen = false;
         gameContainer.SetActive(false);
     }
 

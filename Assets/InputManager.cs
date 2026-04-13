@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Yarn.Unity;
 
 public class InputManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class InputManager : MonoBehaviour
 	public bool InteractInput {get; private set;}
 	public bool MenuOpenInput {get; private set;}
 	public bool MenuCloseInput {get; private set;}
+	public bool IsUiOpen {get; set;}
 
 	public bool ClickInput { get; private set; }
 	private InputAction clickAction;
@@ -19,9 +21,10 @@ public class InputManager : MonoBehaviour
 	private InputAction menuOpenAction;
 	private InputAction menuCloseAction;
 
+	private DialogueRunner runner;
+
 	void Awake()
 	{
-		// if null, set to this
 		I = this;
 		PlayerInput = GetComponent<PlayerInput>();
 		moveAction = PlayerInput.actions["Move"];
@@ -29,14 +32,21 @@ public class InputManager : MonoBehaviour
 		menuOpenAction = PlayerInput.actions["MenuOPEN"];
 		menuCloseAction = PlayerInput.actions["MenuCLOSE"];
 		clickAction = PlayerInput.actions["UI/Click"];
+
+		runner = GameObject.FindWithTag("Yarn")?.GetComponent<DialogueRunner>();
 	}
 
 	void Update()
 	{
-		MoveInput = moveAction.ReadValue<Vector2>();
-		InteractInput = interactAction.WasPressedThisFrame();
-		MenuOpenInput = menuOpenAction.WasPressedThisFrame();
-		MenuCloseInput = menuCloseAction.WasPressedThisFrame();
+		MoveInput = IsDialogue() || IsUiOpen ? Vector2.zero : moveAction.ReadValue<Vector2>();
+		InteractInput = !IsUiOpen && interactAction.WasPressedThisFrame();
+		MenuOpenInput = !IsUiOpen && menuOpenAction.WasPressedThisFrame();
+		MenuCloseInput = IsUiOpen && menuCloseAction.WasPressedThisFrame();
 		ClickInput = clickAction.WasPressedThisFrame();
+	}
+
+	bool IsDialogue()
+	{
+		return runner?.IsDialogueRunning ?? false;
 	}
 }
